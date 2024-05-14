@@ -7,6 +7,7 @@ import cores.Cor;
 
 public class Main {
     public static void main(String[] args){
+        
         Console.println("Ola Mundo " + "⿯");
     }
 }
