@@ -12,8 +12,8 @@ public class Seas extends Tabuleiro{
         super(numLinhas, numColunas, fundo);
     }
     
-    public void Attack(){
-        setFundo(5, 5, sunkenBoat);
+    public void Attack(int row, int column){
+        setFundo(row, column, sunkenBoat);
     }
     
 }
