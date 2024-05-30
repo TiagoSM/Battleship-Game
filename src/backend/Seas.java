@@ -1,5 +1,6 @@
 package backend;
-import backend.Boat;
+
+import frontend.Menu;
 import console.Console;
 import console.Tecla;
 import mecanicas.Carta;
@@ -12,12 +13,11 @@ public class Seas extends Tabuleiro {
     byte boardPlayer2Selection = 0;
     byte flag = 0;
     int i;
-    byte rowCountPlayer1 = 0;
-    byte columnCountPlayer1 = 0;
-    byte rowCountPlayer2 = 0;
-    byte columnCountPlayer2 = 0;
+    public byte rowCountPlayer = 0;
+    public byte columnCountPlayer = 0;
     byte rowAmount = 10;
     byte columnAmount = 10;
+    Menu display = new Menu();
     Tecla key;
     Colors bottomChar = new Colors("⚪"); //Ainda não está usando
     Colors sunkenChar = new Colors("❌");
@@ -95,6 +95,8 @@ public class Seas extends Tabuleiro {
         }
     }
     
+    
+    
     public Seas(int numLinhas, int numColunas, Carta fundo) {
         super(numLinhas, numColunas, fundo);
     }
@@ -117,7 +119,7 @@ public class Seas extends Tabuleiro {
         setFundo(row, column, solidBoat);
     }
     
-    public void ChooseBoard(int columnCountPlayer, Seas boardShip0, Seas boardShip1){
+    public void BoardOptions(int columnCountPlayer, Seas boardShip0, Seas boardShip1){
         if(columnCountPlayer == 0){
         Console.println("Board 1");
         Console.println(boardShip0);
@@ -125,6 +127,38 @@ public class Seas extends Tabuleiro {
             Console.println("Board 2");
             Console.println(boardShip1);
         }
+    }
+    
+    public void ChooseBoard(Seas boardPlayerDefault){
+        if(columnCountPlayer == 0){
+            boardPlayerDefault = new Seas("BOARD0");
+            boardPlayer1Selection = 0;
+        } else if(columnCountPlayer == 1){
+            boardPlayerDefault = new Seas("BOARD1");
+            boardPlayer1Selection = 1;
+        }
+    }
+    
+    public int ColumnMovementLeft(int column, Tecla key){
+        if(column == 0){
+            do{
+                display.InvalidKey(key);
+            }while(Console.getTecla() != Tecla.ENTER);
+        } else{
+            column--;
+        }
+        return column;
+    }
+    
+    public int ColumnMovementRight(int column, Tecla key){
+        if(column == 1){
+            do{
+                display.InvalidKey(key);
+            }while(Console.getTecla() != Tecla.ENTER);
+        } else{
+            column++;
+        }
+        return column;
     }
     
 }
