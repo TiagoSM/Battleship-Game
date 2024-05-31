@@ -9,15 +9,13 @@ import mecanicas.Tabuleiro;
 public class Seas extends Tabuleiro {
     boolean found = false;
     byte count = 0;
-    byte boardPlayer1Selection = 0;
-    byte boardPlayer2Selection = 0;
     byte flag = 0;
     int i;
-    public byte rowCountPlayer = 0;
-    public byte columnCountPlayer = 0;
+    byte rowCountPlayer = 0;
+    byte columnCountPlayer = 0;
     byte rowAmount = 10;
     byte columnAmount = 10;
-    Menu display = new Menu();
+    Menu menu = new Menu();
     Tecla key;
     Colors bottomChar = new Colors("⚪"); //Ainda não está usando
     Colors sunkenChar = new Colors("❌");
@@ -26,16 +24,18 @@ public class Seas extends Tabuleiro {
     Boat sunkenBoat = new Boat(sunkenChar);
     Boat emptySea = new Boat(emptyChar);
     Boat solidBoat = new Boat(boatChar);
-    public int amountBoard0 [] [] = new int[2][];
-    public int amountBoard1[][] = new int[2][];
+    int amountBoard0 [] [] = new int[2][];
+    int amountBoard1[][] = new int[2][];
     
     
     
     static Boat part = new Boat(new Colors("⚪"));
     
+    
+    //INICIALIZATION
     public Seas(String board){
         super(10, 10, part);
-        //SETAR TUDO AQUI ASSIM QUE EU FINALIZAR TODO O JOGO BASE, PARA GARANTIR A NOTA
+        
         switch(board){
             case "BOARD0":                
                 Seas boardShip0 = this;
@@ -95,18 +95,7 @@ public class Seas extends Tabuleiro {
         }
     }
     
-    
-    
-    public Seas(int numLinhas, int numColunas, Carta fundo) {
-        super(numLinhas, numColunas, fundo);
-    }
-
-    public Seas(Tabuleiro fundo) {
-        super(fundo);
-    }
-    
-    
-    
+    //TOOLS
     public void SucesfullAttack(int row, int column){
         setFundo(row, column, sunkenBoat);
     }
@@ -119,6 +108,79 @@ public class Seas extends Tabuleiro {
         setFundo(row, column, solidBoat);
     }
     
+    public int RowMovementUp(int row, Tecla key){
+        if(row == 0){
+            do{
+                menu.InvalidKey(key);
+            }while(Console.getTecla() != Tecla.ENTER);
+        } else{
+            row--;
+        }
+        return row;
+    }
+    
+    public int RowMovementDown(int row, Tecla key){
+        if(row == 10){
+            do{
+                menu.InvalidKey(key);
+            }while(Console.getTecla() != Tecla.ENTER);
+        } else{
+            row++;
+        }
+        return row;
+    }
+    
+    public int ColumnMovementLeft(int column, Tecla key){
+        if(column == 0){
+            do{
+                menu.InvalidKey(key);
+            }while(Console.getTecla() != Tecla.ENTER);
+        } else{
+            column--;
+        }
+        return column;
+    }
+    
+    public int ColumnMovementRight(int column, Tecla key, int columnAmount){
+        if(column == columnAmount){
+            do{
+                menu.InvalidKey(key);
+            }while(Console.getTecla() != Tecla.ENTER);
+        } else{
+            column++;
+        }
+        return column;
+    }
+    
+    public void PlayerAttack(int boardPlayerSelection, Seas boardPlayerDefault, Seas boardPlayerAction, int columnCountPlayer, int rowCountPlayer){
+        if (boardPlayerSelection == 0) {
+            found = false;
+            for (i = 0; i < boardPlayerAction.amountBoard0[0].length; i++) {
+                if (rowCountPlayer == boardPlayerDefault.amountBoard0[0][i] && columnCountPlayer == boardPlayerDefault.amountBoard0[1][i]) {
+                    found = true;
+                    break;
+                    }
+                }
+
+            if (found) {
+                // Ataque bem-sucedido
+                boardPlayerAction.SucesfullAttack(rowCountPlayer, columnCountPlayer);
+                boardPlayerDefault.SucesfullAttack(rowCountPlayer, columnCountPlayer);
+                count++;
+            } else {
+                // Ataque falhou
+                System.out.println("errou");
+                boardPlayerAction.MissedAttack(rowCountPlayer, columnCountPlayer);
+                boardPlayerDefault.MissedAttack(rowCountPlayer, columnCountPlayer);
+            }
+        } else{
+            // Condição inicial falhou
+            System.out.println("tudo errado");
+        }
+    }
+    
+    
+    //PHASES
     public void BoardOptions(int columnCountPlayer, Seas boardShip0, Seas boardShip1){
         if(columnCountPlayer == 0){
         Console.println("Board 1");
@@ -129,36 +191,15 @@ public class Seas extends Tabuleiro {
         }
     }
     
-    public void ChooseBoard(Seas boardPlayerDefault){
+    public Seas ChoosedBoard(int columnCountPlayer, Seas boardPlayerDefault, int boardPlayerSelection){
         if(columnCountPlayer == 0){
-            boardPlayerDefault = new Seas("BOARD0");
-            boardPlayer1Selection = 0;
+            boardPlayerSelection = 0;
+            return boardPlayerDefault = new Seas("BOARD0");
         } else if(columnCountPlayer == 1){
-            boardPlayerDefault = new Seas("BOARD1");
-            boardPlayer1Selection = 1;
+            boardPlayerSelection = 1;
+            return boardPlayerDefault = new Seas("BOARD1");
         }
-    }
-    
-    public int ColumnMovementLeft(int column, Tecla key){
-        if(column == 0){
-            do{
-                display.InvalidKey(key);
-            }while(Console.getTecla() != Tecla.ENTER);
-        } else{
-            column--;
-        }
-        return column;
-    }
-    
-    public int ColumnMovementRight(int column, Tecla key){
-        if(column == 1){
-            do{
-                display.InvalidKey(key);
-            }while(Console.getTecla() != Tecla.ENTER);
-        } else{
-            column++;
-        }
-        return column;
+        return null;
     }
     
 }
