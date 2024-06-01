@@ -11,6 +11,7 @@ public class Main {
             display.key = Console.getTecla();
             switch(display.key){
                 case ENTER:
+                    display.resetBoards();
                     display.ChooseBoard();
                     display.LoopGame();
                     break;

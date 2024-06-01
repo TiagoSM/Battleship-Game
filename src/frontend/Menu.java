@@ -33,6 +33,20 @@ public class Menu {
     }
     
     //TOOLS
+    public void resetBoards(){
+        boardPlayer1Default = new Seas();
+        boardPlayer2Default = new Seas();
+        boardPlayer1Action = new Seas();
+        boardPlayer2Action = new Seas();
+        
+        boardShip0 = boardPlayer1Default.InitializeBoard("BOARD0");
+        boardShip1 = boardPlayer2Default.InitializeBoard("BOARD1");
+        
+        countPlayer1 = 0;
+        countPlayer2 = 0;
+        flag = 0;
+    }
+    
     private void SelectBoard(int playerNumber, Seas boardPlayerDefault, int boardPlayerSelection){
         do{
                     do{
@@ -188,6 +202,7 @@ public class Menu {
     
     //MENUS
     public void MainMenu(){
+        Console.limpaTela();
         Console.println("MAIN MENU");
         Console.println("ENTER: New game");
         Console.println("S: Saved game");
@@ -223,8 +238,9 @@ public class Menu {
     
     private void WinGame(int count){
         if(count == 30){
-            WinMenu();
+            
         do {
+            WinMenu();
             key = Console.getTecla();
             switch(key){
                 case M:
@@ -237,7 +253,7 @@ public class Menu {
                     Console.saiDoPrograma();
                     break;
                 default:
-                    Console.println("Pressione uma tecla válida (M para Menu Principal, S para Salvar, ESC para Sair).");
+                    Console.println("Invalid input!");
             }
         } while(key != Tecla.M && key != Tecla.S && key != Tecla.ESC);
             countPlayer1 = 0;
