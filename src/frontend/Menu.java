@@ -94,7 +94,7 @@ public class Menu {
                     boardPlayerAction.SucesfullAttack(rowCountPlayer, columnCountPlayer);
                     boardPlayer2Default.SucesfullAttack(rowCountPlayer, columnCountPlayer);
                     if(PlayerNumber == 1){
-                       countPlayer1 = 30;
+                       countPlayer1++;
                        WinGame(countPlayer1);
                     } else{
                         countPlayer2++;
@@ -116,7 +116,7 @@ public class Menu {
                        countPlayer1++;
                        WinGame(countPlayer1);
                     } else{
-                        countPlayer2++;
+                        countPlayer2 = 30;
                         WinGame(countPlayer2);
                     }
 
@@ -164,23 +164,25 @@ public class Menu {
                     PlayerAttack(PlayerNumber, boardPlayer1Selection, boardPlayerDefault, boardPlayerAction, row, column);
                     break;
                 case P:
-                    PauseMenu();
-                    Tecla keyPause = Console.getTecla();
-                    switch(keyPause){
-                        case B:
-                            flag = 0;
-                            row = 0;
-                            column = 0;
-                            break;
-                        case P:
-                            break;
-                        case M:
-                            flag = 9;
-                            break;
-                        case ESC:
-                            Console.saiDoPrograma();
-                            break;
-                    }
+                    do{
+                        PauseMenu();
+                        Tecla keyPause = Console.getTecla();
+                        switch(keyPause){
+                            case B:
+                                flag = 0;
+                                row = 0;
+                                column = 0;
+                                break;
+                            case S:
+                                break;
+                            case M:
+                                flag = 9;
+                                break;
+                            case ESC:
+                                Console.saiDoPrograma();
+                                break;
+                        }
+                    } while(key != Tecla.B && key != Tecla.M && key != Tecla.S && key != Tecla.ESC);
                     break;
 
                 default:
@@ -247,7 +249,7 @@ public class Menu {
                     flag = 9;
                     break;
                 case S:
-                    // Código para salvar o jogo pode ser adicionado aqui
+                    
                     break;
                 case ESC:
                     Console.saiDoPrograma();
