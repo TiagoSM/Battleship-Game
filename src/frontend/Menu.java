@@ -80,7 +80,7 @@ public class Menu {
                     boardPlayerAction.SucesfullAttack(rowCountPlayer, columnCountPlayer);
                     boardPlayer2Default.SucesfullAttack(rowCountPlayer, columnCountPlayer);
                     if(PlayerNumber == 1){
-                       countPlayer1++;
+                       countPlayer1 = 30;
                        WinGame(countPlayer1);
                     } else{
                         countPlayer2++;
@@ -161,7 +161,7 @@ public class Menu {
                         case P:
                             break;
                         case M:
-                            flag = 1;
+                            flag = 9;
                             break;
                         case ESC:
                             Console.saiDoPrograma();
@@ -177,8 +177,12 @@ public class Menu {
                 Console.println("Enter a valid input!");
             }
                     
-                    Console.limpaTela();
-                }while(key != Tecla.ENTER);
+            if (flag == 9) {
+                break;  // Saia do loop se a flag for definida como 9
+            }
+        
+            Console.limpaTela();
+        }while(key != Tecla.ENTER);
     }
     
     
@@ -220,14 +224,24 @@ public class Menu {
     private void WinGame(int count){
         if(count == 30){
             WinMenu();
-            Tecla keyPause = Console.getTecla();
-            switch(keyPause){
+        do {
+            key = Console.getTecla();
+            switch(key){
                 case M:
-                    flag = 1;
+                    flag = 9;
                     break;
                 case S:
+                    // Código para salvar o jogo pode ser adicionado aqui
                     break;
+                case ESC:
+                    Console.saiDoPrograma();
+                    break;
+                default:
+                    Console.println("Pressione uma tecla válida (M para Menu Principal, S para Salvar, ESC para Sair).");
             }
+        } while(key != Tecla.M && key != Tecla.S && key != Tecla.ESC);
+            countPlayer1 = 0;
+            countPlayer2 = 0;
         }
     }
     
@@ -240,10 +254,17 @@ public class Menu {
     public void LoopGame(){
         do{
                 //player 1 attack
-                TurnPlayer(1, boardPlayer1Default, boardPlayer2Action);
-
+                if(countPlayer2 < 30 && countPlayer1 < 30){
+                    TurnPlayer(1, boardPlayer1Default, boardPlayer2Action);
+                }
+                if(flag == 9){
+                    break;
+                }
                 //player 2 attack
-                TurnPlayer(2, boardPlayer2Default, boardPlayer1Action);
+                if(countPlayer1 < 30 && countPlayer2 < 30){
+                    TurnPlayer(2, boardPlayer2Default, boardPlayer1Action);
+                }
+                
         }while(flag != 9);
         
     }
