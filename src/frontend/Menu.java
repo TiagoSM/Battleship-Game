@@ -27,9 +27,11 @@ public class Menu {
         boardPlayer2Default = new Seas();
         boardPlayer1Action = new Seas();
         boardPlayer2Action = new Seas();
+        boardShip0 = new Seas();
+        boardShip1 = new Seas();
         
-        boardShip0 = boardPlayer1Default.InitializeBoard("BOARD0");
-        boardShip1 = boardPlayer2Default.InitializeBoard("BOARD1");
+        boardShip0 = boardShip0.InitializeBoard("BOARD0");
+        boardShip1 = boardShip1.InitializeBoard("BOARD1");
     }
      
     //TOOLS
@@ -38,9 +40,11 @@ public class Menu {
         boardPlayer2Default = new Seas();
         boardPlayer1Action = new Seas();
         boardPlayer2Action = new Seas();
+        boardShip0 = new Seas();
+        boardShip1 = new Seas();
         
-        boardShip0 = boardPlayer1Default.InitializeBoard("BOARD0");
-        boardShip1 = boardPlayer2Default.InitializeBoard("BOARD1");
+        boardShip0 = boardShip0.InitializeBoard("BOARD0");
+        boardShip1 = boardShip1.InitializeBoard("BOARD1");
         
         countPlayer1 = 0;
         countPlayer2 = 0;
@@ -221,8 +225,8 @@ public class Menu {
                 case P:
                     do{
                         PauseMenu();
-                        Tecla keyPause = Console.getTecla();
-                        switch(keyPause){
+                        key = Console.getTecla();
+                        switch(key){
                             case B:
                                 flag = 0;
                                 row = 0;
