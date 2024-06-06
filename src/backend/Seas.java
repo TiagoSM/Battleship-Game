@@ -14,6 +14,7 @@ public class Seas extends Tabuleiro {
     Boat sunkenBoat = new Boat(sunkenChar);
     Boat emptySea = new Boat(emptyChar);
     Boat solidBoat = new Boat(boatChar);
+    //Ajuda do ChatGPT para iniciar os arrays em cada linha para que eu nao tenha que informar cada valor em cada coordenada, assim posso apenas informar o valor sem ter que mudar as posiçoes no vetor
     public int[][] amountBoard0 = new int[2][];
     public int[][] amountBoard1 = new int[2][];
     static Boat bottomChar = new Boat(new Colors("⚪"));

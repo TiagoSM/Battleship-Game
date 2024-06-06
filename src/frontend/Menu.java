@@ -31,7 +31,7 @@ public class Menu {
         boardShip0 = boardPlayer1Default.InitializeBoard("BOARD0");
         boardShip1 = boardPlayer2Default.InitializeBoard("BOARD1");
     }
-    
+     
     //TOOLS
     public void resetBoards(){
         boardPlayer1Default = new Seas();
@@ -56,9 +56,18 @@ public class Menu {
                     } while(Console.getTecla() != Tecla.ENTER);
                     
                     do{
+                        
+                        
+ 
+                        
+                        
+                       
+                        
                         Console.limpaTela();
                         Console.println("Player " + playerNumber + " choice");
                         boardPlayerDefault.BoardOptions(column, boardShip0, boardShip1);
+                        Console.println("Click LEFT or RIGHT to see the boards");
+                        Console.println("Click ENTER to select the board");
                         key = Console.getTecla();
                         switch(key){
                             case LEFT:
@@ -69,7 +78,7 @@ public class Menu {
                                 break;
                             case ENTER:
                                 boardPlayerDefault = boardPlayerDefault.ChoosedBoard(column, boardPlayerDefault, boardPlayerSelection);
-                            break;
+                                break;
                             case ESC:
                                 Console.saiDoPrograma();
                                 break;
@@ -82,8 +91,8 @@ public class Menu {
     public void PlayerAttack(int PlayerNumber, int boardPlayerSelection, Seas boardPlayerDefault, Seas boardPlayerAction, int rowCountPlayer, int columnCountPlayer){
         if (boardPlayerSelection == 0) {
             found = false;
-            for (i = 0; i < boardPlayerDefault.amountBoard0[0].length; i++) {
-                if (rowCountPlayer == boardPlayerDefault.amountBoard0[0][i] && columnCountPlayer == boardPlayerDefault.amountBoard0[1][i]) {
+            for (i = 0; i < boardShip0.amountBoard0[0].length; i++) {
+                if (rowCountPlayer == boardShip0.amountBoard0[0][i] && columnCountPlayer == boardShip0.amountBoard0[1][i]) {
                     found = true;
                     break;
                     }
@@ -116,7 +125,35 @@ public class Menu {
                        countPlayer1++;
                        WinGame(countPlayer1);
                     } else{
-                        countPlayer2 = 30;
+                        countPlayer2++;
+                        WinGame(countPlayer2);
+                    }
+
+                } else {
+                    System.out.println("errou");
+                    boardPlayerAction.MissedAttack(rowCountPlayer, columnCountPlayer);
+                    boardPlayer1Default.MissedAttack(rowCountPlayer, columnCountPlayer);
+                }
+            }
+                
+        } else if(boardPlayerSelection == 1){
+            found = false;
+            for (i = 0; i < boardShip1.amountBoard1[0].length; i++) {
+                if (rowCountPlayer == boardShip1.amountBoard1[0][i] && columnCountPlayer == boardShip1.amountBoard0[1][i]) {
+                    found = true;
+                    break;
+                    }
+                }
+            if(PlayerNumber == 1){
+                if (found) {
+                    // Ataque bem-sucedido
+                    boardPlayerAction.SucesfullAttack(rowCountPlayer, columnCountPlayer);
+                    boardPlayer2Default.SucesfullAttack(rowCountPlayer, columnCountPlayer);
+                    if(PlayerNumber == 1){
+                       countPlayer1++;
+                       WinGame(countPlayer1);
+                    } else{
+                        countPlayer2++;
                         WinGame(countPlayer2);
                     }
 
@@ -124,13 +161,27 @@ public class Menu {
                     // Ataque falhou
                     System.out.println("errou");
                     boardPlayerAction.MissedAttack(rowCountPlayer, columnCountPlayer);
+                    boardPlayer2Default.MissedAttack(rowCountPlayer, columnCountPlayer);
+                }
+            } else if(PlayerNumber == 2){
+                if (found) {
+                    // Ataque bem-sucedido
+                    boardPlayerAction.SucesfullAttack(rowCountPlayer, columnCountPlayer);
+                    boardPlayer1Default.SucesfullAttack(rowCountPlayer, columnCountPlayer);
+                    if(PlayerNumber == 1){
+                       countPlayer1++;
+                       WinGame(countPlayer1);
+                    } else{
+                        countPlayer2++;
+                        WinGame(countPlayer2);
+                    }
+
+                } else {
+                    System.out.println("errou");
+                    boardPlayerAction.MissedAttack(rowCountPlayer, columnCountPlayer);
                     boardPlayer1Default.MissedAttack(rowCountPlayer, columnCountPlayer);
                 }
             }
-                
-        } else{
-            // Condição inicial falhou
-            System.out.println("tudo errado");
         }
     }
     
@@ -145,7 +196,7 @@ public class Menu {
         
         do{       
             BoardGame(PlayerNumber, boardPlayerDefault, boardPlayerAction, row, column);
-        try{
+        
             key = Console.getTecla();
             switch(key){
                 case UP:
@@ -161,7 +212,11 @@ public class Menu {
                     column = boardPlayerAction.ColumnMovementRight(column, key, 9);
                     break;
                 case ENTER:
-                    PlayerAttack(PlayerNumber, boardPlayer1Selection, boardPlayerDefault, boardPlayerAction, row, column);
+                    if(PlayerNumber == 1){
+                        PlayerAttack(PlayerNumber, boardPlayer1Selection, boardPlayerDefault, boardPlayerAction, row, column);
+                    } else if(PlayerNumber == 2){
+                        PlayerAttack(PlayerNumber, boardPlayer2Selection, boardPlayerDefault, boardPlayerAction, row, column);
+                    }
                     break;
                 case P:
                     do{
@@ -188,10 +243,8 @@ public class Menu {
                 default:
                     row = 0;
                     column = 0;
-                    }
-            } catch(RuntimeException e){
-                Console.println("Enter a valid input!");
             }
+            
                     
             if (flag == 9) {
                 break;  // Saia do loop se a flag for definida como 9
@@ -232,6 +285,9 @@ public class Menu {
         Console.println("Player " + PlayerNumber + " turn");
         Console.println("\tClick P to Pause");
         Console.print(boardPlayerDefault);
+        Console.println("");
+        Console.println("----------------");
+        Console.println("");
         Console.println(boardPlayerAction);
         Console.print("ARROWS: Move\t");
         Console.print("ENTER: Attack \t");
