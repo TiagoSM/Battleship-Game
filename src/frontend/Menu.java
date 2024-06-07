@@ -233,6 +233,7 @@ public class Menu {
                                 column = 0;
                                 break;
                             case S:
+                                Console.limpaTela();
                                 break;
                             case M:
                                 flag = 9;
@@ -309,7 +310,7 @@ public class Menu {
                     flag = 9;
                     break;
                 case S:
-                    
+                    Console.limpaTela();
                     break;
                 case ESC:
                     Console.saiDoPrograma();

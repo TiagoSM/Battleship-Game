@@ -17,7 +17,6 @@ public class Main {
                     break;
                 case S:
                     Console.limpaTela();
-                    //Add Save Game
                     break;
                 case ESC:
                     Console.saiDoPrograma();
