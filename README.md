@@ -11,3 +11,10 @@ The game is for 2 players and takes turns, the main rules are:
 - After players choose their boards, attack turns begin on enemy naval squadrons.
 - Wants to win?
   - Attack the entire enemy fleet!
+
+
+## About the Author
+I study Information Technology every day, in order to become the best IT professional, I know that it is impossible to be the best...But, why not try?
+- Portfolio: https://tiagosm.github.io/portfolio
+- GitHub Profile: https://github.com/TiagoSM
+- LinkedIn: https://www.linkedin.com/in/tiago-santos-mesquita
