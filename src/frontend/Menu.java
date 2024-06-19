@@ -86,6 +86,8 @@ public class Menu {
                             case ESC:
                                 Console.saiDoPrograma();
                                 break;
+                            default:
+                            	Console.println("Invalid key!");
                         }
                         
                     }while(key != Tecla.ENTER);
@@ -103,7 +105,7 @@ public class Menu {
                 }
             if(PlayerNumber == 1){
                 if (found) {
-                    // Ataque bem-sucedido
+                    // Successful attack
                     boardPlayerAction.SucesfullAttack(rowCountPlayer, columnCountPlayer);
                     boardPlayer2Default.SucesfullAttack(rowCountPlayer, columnCountPlayer);
                     if(PlayerNumber == 1){
@@ -115,14 +117,13 @@ public class Menu {
                     }
 
                 } else {
-                    // Ataque falhou
-                    System.out.println("errou");
+                    // Unsuccessful Attack
                     boardPlayerAction.MissedAttack(rowCountPlayer, columnCountPlayer);
                     boardPlayer2Default.MissedAttack(rowCountPlayer, columnCountPlayer);
                 }
             } else if(PlayerNumber == 2){
                 if (found) {
-                    // Ataque bem-sucedido
+                    // Successful Attack
                     boardPlayerAction.SucesfullAttack(rowCountPlayer, columnCountPlayer);
                     boardPlayer1Default.SucesfullAttack(rowCountPlayer, columnCountPlayer);
                     if(PlayerNumber == 1){
@@ -134,7 +135,7 @@ public class Menu {
                     }
 
                 } else {
-                    System.out.println("errou");
+                	//Unsuccessful Attack
                     boardPlayerAction.MissedAttack(rowCountPlayer, columnCountPlayer);
                     boardPlayer1Default.MissedAttack(rowCountPlayer, columnCountPlayer);
                 }
@@ -150,7 +151,7 @@ public class Menu {
                 }
             if(PlayerNumber == 1){
                 if (found) {
-                    // Ataque bem-sucedido
+                    // Successful Attack
                     boardPlayerAction.SucesfullAttack(rowCountPlayer, columnCountPlayer);
                     boardPlayer2Default.SucesfullAttack(rowCountPlayer, columnCountPlayer);
                     if(PlayerNumber == 1){
@@ -162,14 +163,14 @@ public class Menu {
                     }
 
                 } else {
-                    // Ataque falhou
+                    // Unsuccessful Attack
                     System.out.println("errou");
                     boardPlayerAction.MissedAttack(rowCountPlayer, columnCountPlayer);
                     boardPlayer2Default.MissedAttack(rowCountPlayer, columnCountPlayer);
                 }
             } else if(PlayerNumber == 2){
                 if (found) {
-                    // Ataque bem-sucedido
+                    // Successful Attack
                     boardPlayerAction.SucesfullAttack(rowCountPlayer, columnCountPlayer);
                     boardPlayer1Default.SucesfullAttack(rowCountPlayer, columnCountPlayer);
                     if(PlayerNumber == 1){
@@ -241,6 +242,8 @@ public class Menu {
                             case ESC:
                                 Console.saiDoPrograma();
                                 break;
+                            default:
+                                Console.println("Invalid key!");
                         }
                     } while(key != Tecla.B && key != Tecla.M && key != Tecla.S && key != Tecla.ESC);
                     break;
@@ -252,7 +255,7 @@ public class Menu {
             
                     
             if (flag == 9) {
-                break;  // Saia do loop se a flag for definida como 9
+                break;
             }
         
             Console.limpaTela();
@@ -265,7 +268,6 @@ public class Menu {
         Console.limpaTela();
         Console.println("MAIN MENU");
         Console.println("ENTER: New game");
-        Console.println("S: Saved game");
         Console.println("ESC: Exit game");
     }
     
@@ -273,14 +275,12 @@ public class Menu {
         Console.limpaTela();
         Console.println("\\\\\\\\\\\\YOU WIN/////////////");
         Console.println("M: Main Menu");
-        Console.println("S: Save Game");
     }
     
     private void PauseMenu(){
         Console.limpaTela();
         Console.println("Choose a option: ");
         Console.println("B: Continue");
-        Console.println("S: Save Game");
         Console.println("M: Main Menu");
         Console.println("ESC: Exit Game");
     }

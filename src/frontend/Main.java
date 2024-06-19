@@ -15,12 +15,12 @@ public class Main {
                     display.ChooseBoard();
                     display.LoopGame();
                     break;
-                case S:
-                    Console.limpaTela();
-                    break;
                 case ESC:
                     Console.saiDoPrograma();
-            }
+                    break;
+                default:
+                	Console.println("Invalid key!");         
+             }
         }
     }
 }

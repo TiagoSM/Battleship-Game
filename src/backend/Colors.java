@@ -1,6 +1,5 @@
 package backend;
 
-import cores.Cor;
 import cores.StringColorida;
 
 public class Colors extends StringColorida{
