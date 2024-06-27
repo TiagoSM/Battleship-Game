@@ -14,7 +14,6 @@ public class Seas extends Tabuleiro {
     Boat sunkenBoat = new Boat(sunkenChar);
     Boat emptySea = new Boat(emptyChar);
     Boat solidBoat = new Boat(boatChar);
-    //Ajuda do ChatGPT para iniciar os arrays em cada linha para que eu nao tenha que informar cada coordenada em cada posição da matriz, assim posso apenas informar o valor sem ter que mudar as posiçoes no vetor ou pré-definir a quantidade que deve armazenar na matriz bidimensional. E também em tornar público essas matrizes, pois eu não estava conseguindo acessar esses valores na classe Menu, logo o ChatGPT me informou que eu devia deixar público para que funcionasse.
     public int[][] amountBoard0 = new int[2][];
     public int[][] amountBoard1 = new int[2][];
     static Boat bottomChar = new Boat(new Colors("⚪"));
@@ -41,7 +40,7 @@ public class Seas extends Tabuleiro {
     }
     
     private void InitializeBoats(int amountBoard[][]){
-        //Submarine
+        		//Submarine
                 int quantityPositionSubmarine1 = 8;
                 for(i = 0; i < quantityPositionSubmarine1; i++){
                     Boat(amountBoard[0][i], amountBoard[1][i]);

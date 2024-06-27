@@ -60,13 +60,6 @@ public class Menu {
                     } while(Console.getTecla() != Tecla.ENTER);
                     
                     do{
-                        
-                        
- 
-                        
-                        
-                       
-                        
                         Console.limpaTela();
                         Console.println("Player " + playerNumber + " choice");
                         boardPlayerDefault.BoardOptions(column, boardShip0, boardShip1);
@@ -252,8 +245,7 @@ public class Menu {
                     row = 0;
                     column = 0;
             }
-            
-                    
+                   
             if (flag == 9) {
                 break;
             }
@@ -336,9 +328,11 @@ public class Menu {
                 if(countPlayer2 < 30 && countPlayer1 < 30){
                     TurnPlayer(1, boardPlayer1Default, boardPlayer2Action);
                 }
+                
                 if(flag == 9){
                     break;
                 }
+                
                 //player 2 attack
                 if(countPlayer1 < 30 && countPlayer2 < 30){
                     TurnPlayer(2, boardPlayer2Default, boardPlayer1Action);
