@@ -8,9 +8,14 @@ Academic project made for the OOP I subject. With the aim of practicing Object O
 The game is for 2 players and takes turns, the main rules are:
 - On player 1's turns, player 2 must turn his back to player 1's board and vice versa.  (Since it's a game that only uses 1 computer, this is the only way...LOL)
 - When starting a new game, players choose their boards respectively.
+  <img src="https://cdn.discordapp.com/attachments/902296955445719100/1256045479607664721/Captura_de_tela_2024-06-27_204859.png?ex=667f5702&is=667e0582&hm=9523940249b6652a2942321daf9ac89e69f11c0d1471a31971a9785bdda82505&" alt="Board Choose" width="500" height="500">
+
+  
 - After players choose their boards, attack turns begin on enemy naval squadrons.
+  ![Players Turn](https://cdn.discordapp.com/attachments/902296955445719100/1256045480190808224/Captura_de_tela_2024-06-27_205116.png?ex=667f5702&is=667e0582&hm=a4a498fb2073367aac9700bef4b7e6b82008d5791383f36b09bba113928266d1&)
 - Wants to win?
   - Attack the entire enemy fleet!
+    ![Player Win](https://cdn.discordapp.com/attachments/902296955445719100/1256045480488730694/Capturar.PNG?ex=667f5702&is=667e0582&hm=1c2818756ad775d7b301893b3e7a01ff71abb0e0cdbaaaaabb5fb68cb17969d4&)
 
 
 ## About the Author
